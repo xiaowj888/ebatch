@@ -1,4 +1,4 @@
-- [home1](/home1)
+- [多线程](/)
 - [home2](/home2)
 - [home3](/home3)
 - [home4](/home4)
