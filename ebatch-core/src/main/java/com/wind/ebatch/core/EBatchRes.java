@@ -10,7 +10,7 @@ import java.util.Map;
  * @created: 2020-08-08
  **/
 class EBatchRes<E, R> {
-    //返回执行结果
+       //返回执行结果
     private Map<Integer, Pair<E,R>> resMap;
     //保存执行异常 中断剩余任务
     private volatile Throwable exception;

@@ -26,14 +26,11 @@ public interface IBatchExecutor {
      **/
     EBatchRes<Void,Void> syncBatchRunnable(List<Runnable> batchList) throws InterruptedException;
 
-
     /**
      * @description 同步批次处理，所有批次同步执行完成后返回执行结果
      * @Date 2020/8/8 12:49
      **/
     <R> EBatchRes<Void,R> syncBatchCallable(List<Callable<R>> batchList) throws InterruptedException;
-
-
 
     /**
     * @description 异步执行批次处理，异常不中断，所以任务执行完
@@ -50,13 +47,9 @@ public interface IBatchExecutor {
      **/
     void asyncBatchRunnable(List<Runnable> batchList) throws InterruptedException;
 
-
     /**
      * @description 异步执行批次处理，异常不中断，所以任务执行完
      * @Date 2020/8/8 12:49
      **/
     <R> void asyncBatchCallable(List<Callable<R>> batchList) throws InterruptedException;
-
-
-
 }
