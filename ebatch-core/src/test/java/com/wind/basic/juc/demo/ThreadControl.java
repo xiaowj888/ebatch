@@ -13,7 +13,7 @@ public class ThreadControl {
     // 线程数量
     final static int threadCount =3;
     // 执行数量
-    final static int exeNumber = 3;
+    final static int exeNumber = 10;
 
     // 控制是否打印
     final static AtomicInteger cas = new AtomicInteger(0);
@@ -54,13 +54,6 @@ public class ThreadControl {
                     }
                 }
 
-
-
-
-
-
-
-
                 /*for(int index=0;index<threadCount;index++){
                     if(curNumber%threadCount!=cas.get())
                         continue;
@@ -75,11 +68,44 @@ public class ThreadControl {
         }
     };
 
+    static class SynchronizedRunnable implements Runnable{
+
+        Object monitor;
+        Object nextMonitor ;
+
+        public SynchronizedRunnable(Object monitor, Object nextMonitor) {
+            this.monitor = monitor;
+            this.nextMonitor = nextMonitor;
+        }
+
+        @Override
+        public void run() {
+            int curNumber = 0;
+            for (;;){
+
+                synchronized (nextMonitor){
+                    nextMonitor.notifyAll();
+                }
+                synchronized (monitor){
+                    try {
+                        monitor.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println(Thread.currentThread().getName() +"print " + (curNumber+1));
+                    curNumber++;
+                    if(curNumber>=exeNumber)
+                        break;
+                }
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Thread ta = new Thread(casRunnable,"A");
         Thread tb = new Thread(casRunnable,"B");
         Thread tc = new Thread(casRunnable,"C");
-        while(true){
+        /*while(true){
             if(cas.get()==0){
                 if(!ta.isAlive()){
                     ta.start();
@@ -96,8 +122,28 @@ public class ThreadControl {
                 }
                 break;
             }
+        }*/
+
+
+        Object ma = new Object();
+        Object mb = new Object();
+        Object mc = new Object();
+        int threadCount=10;
+        Object[] monitors = new Object[threadCount];
+
+        monitors[0]=new Object();
+        for(int i='A';i<'A'+threadCount;i++){
+            System.out.println(Character.toString((char)i));
+            if(i-'A'+1<monitors.length){
+                monitors[i-'A'+1]=new Object();
+            }
+            new Thread(new SynchronizedRunnable(monitors[i-'A'],monitors[(i-'A'+1)%(threadCount)]), Character.toString((char)i)).start();
         }
 
+
+        synchronized (monitors[0]){
+            monitors[0].notifyAll();
+        }
     }
 
 
