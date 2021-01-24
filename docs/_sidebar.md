@@ -1,2 +1,2 @@
 - [多线程](/)
-- [mybatis](/mybatis/mybatis.md)
+- [mybatis](/mybatis/mybatis.html)
