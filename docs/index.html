@@ -7,12 +7,11 @@
     <meta name="description" content="Description">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <link rel="stylesheet" href="assets/css/vue.css">
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css" title="vue">
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/dark.css" title="dark" disabled>
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/buble.css" title="buble" disabled>
+    <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/pure.css" title="pure" disabled>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
-
-    <script src="assets/js/docsify.min.js"></script>
-    <script src="assets/js/prism-java.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </head>
 <body>
 <div id="app"></div>
@@ -40,37 +39,12 @@
         }
     }
 </script>
-
-<script>
-
-
-    var loadSucc = 0;
-    function onLoad(){
-        let tdList = document.getElementsByTagName("td");
-        if(tdList.length <=0 ){
-            return;
-        }
-        for (var td of tdList) {
-            if('Y' === td.textContent){
-                var sp = document.createElement("span");
-                sp.textContent = td.textContent;
-                sp.style.color = "red";
-                td.childNodes.item(0).remove();
-                td.appendChild(sp);
-                td.style.backgroundColor="yellow";
-            }
-        }
-        loadSucc = loadSucc + 1;
-        console.log("开始渲染...."+loadSucc)
-    };
-
-
-    var timer = setInterval(function () {
-        onLoad();
-        if(loadSucc > 100000){
-            clearInterval(timer);
-        }
-    }, 3000);
-</script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+<script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
+<script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 </body>
 </html>
