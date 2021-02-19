@@ -1,4 +1,4 @@
 - [java](/home1)
-- [home2](/home2)
-- [home3](/home3)
-- [home4](/home4)
+- [数据结构](/home2)
+- [算法](/home3)
+- [linux](/home4)
