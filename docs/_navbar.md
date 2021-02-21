@@ -1,9 +1,9 @@
 * java(/)
-  * [spring](zh-cn/quickstart.md)
-  * [mybatis](zh-cn/more-pages.md)
-  * [并发与线程](zh-cn/custom-navbar.md)
+  * [spring](spring/如何利用Spring写业务代码.md)
+  * [mybatis](/mybatis/mybatis.md)
+  * [并发与线程](/)
 
 
 
 * 算法与数据结构
-  * [leetcode](leetcode/_sidebar.md)
+  * [leetcode](leetcode/1两数之和.md)
