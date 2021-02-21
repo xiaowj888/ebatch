@@ -6,4 +6,4 @@
 
 
 * 算法与数据结构
-  * [leetcode](leetcode)
+  * [leetcode](leetcode/_sidebar.md)
