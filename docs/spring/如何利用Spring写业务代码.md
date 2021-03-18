@@ -1,3 +1,5 @@
+
+
 # 2020总结
 
 ###  利用框架优雅开发业务代码  [demo地址](https://github.com/xiaowj888/bcode-demo.git)
@@ -926,3 +928,220 @@ public interface WalletRechargeConverter {
     WalletRechargeTxDTO convertToWalletRecharge(WalletCashierTxDTO source);
 }
 ```
+
+#### 5. 使用SPI
+
+##### 5.1 SPI定义
+?> SPI 全称为 Service Provider Interface，是一种服务发现机制。本质就是将接口的全名和对应的实现类放到配置文件中，应用程序更具配置加载接口的实现类。
+
+```mermaid
+graph LR
+classDef someclass fill:#f96;
+style id fill:#bbf,stroke:#f66,stroke-width:2px,color:#fff,stroke-dasharray: 5 5
+A[应用]-->|调用|B[接口]
+B ==加载配置文件==>sub[服务配置]
+	subgraph id[配置文件]
+       sub --> C[接口实现A]:::someclass
+       sub --> D[接口实现B]:::someclass
+       sub --> E[接口实现C]:::someclass
+    end
+```
+
+?> 为了演示 SPI 我们定义一个 文件上传接口，有Minio 和 Sftp 两种实现方式。
+
+```mermaid
+classDiagram
+IUploadService <|-- MinioUploadService
+IUploadService <|-- SftpUploadService
+```
+```java
+package com.wind.spi;
+
+/**
+ * 定义上传组件
+ */
+public interface IUploadService {
+    void upload();
+}
+
+public class MinioUploadService implements IUploadService{
+    @Override
+    public void upload() {
+        System.out.println("minio upload");
+    }
+}
+public class SftpUploadService implements IUploadService{
+    @Override
+    public void upload() {
+        System.out.println("sftp upload");
+    }
+}
+```
+##### 5.2 JDK 自带 SPI 机制
+?> JDK 本就提供了 SPI 机制，对于 JDBC 驱动的加载就使用了 JDK 自带的 SPI 机制。JDK SPI 要求需要将配置文件放在META-INF/services/路径下，配置文件的命名需要使用接口的全名。可以参考JDK实现java.util.ServiceLoader
+
+
+?> 使用 JDK SPI 需要在META-INF/services/下创建 一个文本文件，名称为 com.wind.spi.IUploadService
+> 文件内容为
+```text
+com.wind.spi.SftpUploadService #use sftp for up download
+com.wind.spi.MinioUploadService #use minio for up download
+```
+?> 测试类
+```java
+	public class JdkSpiTest {
+    public static void main(String[] args) {
+        ServiceLoader<IUploadService> load = ServiceLoader.load(IUploadService.class);
+        load.forEach(IUploadService::upload);
+    }
+}
+```
+> 输出结果
+
+```text
+sftp upload
+minio upload
+```
+##### 5.3  Spring SPI 机制
+
+?> Spring 也提供了 SPI 机制，Spring Boot 对各个组件的自动加载就使用了Spring 自身提供的 SPI。Spring  SPI 指定了配置文件为META-INF/spring.factories。可以参考Spring实现org.springframework.core.io.support.SpringFactoriesLoader
+
+?> 参考 Spring-boot-autoconfigure 格式
+
+```text
+# Initializers
+org.springframework.context.ApplicationContextInitializer=\
+org.springframework.boot.autoconfigure.SharedMetadataReaderFactoryContextInitializer,\
+org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener
+
+# Application Listeners
+org.springframework.context.ApplicationListener=\
+org.springframework.boot.autoconfigure.BackgroundPreinitializer
+
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration,\
+org.springframework.boot.autoconfigure.aop.AopAutoConfiguration,\
+org.springframework.boot.autoconfigure.amqp.RabbitAutoConfiguration,\
+org.springframework.boot.autoconfigure.batch.BatchAutoConfiguration
+...
+```
+?> 还是上面上传的例子，可以在自己项目的resources目录下新建META-INF/spring.factories文件，参考上面的样式可以配置好自己的接口。
+```text
+# Initializers
+org.springframework.context.ApplicationContextInitializer=\
+org.springframework.boot.autoconfigure.SharedMetadataReaderFactoryContextInitializer,\
+org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener
+
+# Application Listeners
+org.springframework.context.ApplicationListener=\
+org.springframework.boot.autoconfigure.BackgroundPreinitializer
+```
+?> 测试类
+```java
+	public class SpringSpiTest {
+    public static void main(String[] args) {
+        List<IUploadService> iUploadServices = SpringFactoriesLoader.loadFactories(IUploadService.class, SpringSpiTest.class.getClassLoader());
+        iUploadServices.forEach(IUploadService::upload);
+    }
+}
+
+```
+> 输出结果
+
+```text
+sftp upload
+minio upload
+```
+##### 5.4  Spring SPI 配合 @EnableAutoConfiguration
+?> 上面我们所提到的SPI都是配置的某个接口的实现，而且每次都是加载了所有的实现类，在使用Spring Boot的经验告诉我们，有些场景我们只需要使用到某一个接口的实现类，比如数据源的配置即便加载多个数据源Jar包 默认只会使用com.zaxxer.hikari.HikariDataSource，这又是如何做到的呢？原来除了配置接口外，Spring Boot 对 SPI 作了扩展，来支持组件的自动装配，比如Spring-boot-autoconfigure 的spring.factories中有对数据源的自动装配,可以参考 org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+```text
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+...
+org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+...
+```
+?> 这里先跳过实现机制，直接看使用效果，现在提供了两种文件上传方式，要达到默认使用Sftp上传，如果指定了使用minio上传则使用Minio上传。首先需要定义个AutoConfiguration
+
+```java
+@Configuration(proxyBeanMethods = false)
+@ConditionalOnClass({ IUploadService.class})
+@EnableConfigurationProperties(UploadProperties.class)
+public class UploadAutoConfiguration {
+    @Configuration(proxyBeanMethods = false)
+    @ConditionalOnMissingBean(SftpUploadService.class)
+    @Conditional(UploadTypeCondition.class)
+    protected static class MinioUploadServiceCreator {
+        @Bean
+        public MinioUploadService minioUploadService(UploadProperties properties) throws Exception {
+            return new MinioUploadService();
+        }
+    }
+
+    static class UploadTypeCondition extends AnyNestedCondition {
+        UploadTypeCondition() {
+            super(ConfigurationPhase.PARSE_CONFIGURATION);
+        }
+        @ConditionalOnProperty(prefix = "upload", name = "type",havingValue = "minio")
+        static class ExplicitType {
+        }
+    }
+
+    @Configuration(proxyBeanMethods = false)
+    @ConditionalOnMissingBean(IUploadService.class)
+    protected static class SftpUploadServiceCreator {
+        @Bean
+        public SftpUploadService SftpUploadService(UploadProperties properties) throws Exception {
+            return new SftpUploadService();
+        }
+    }
+}
+```
+> 使用指定上传方式启动
+```java
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+public class SpringBootAutoConfigTest {
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(SpringBootAutoConfigTest.class)
+                .properties("logging.config=classpath:conf/logback/logback.xml")
+                .properties("upload.type=minio")
+                .run(args);
+    }
+    @Bean
+    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+        return args -> {
+            IUploadService upload = ctx.getBean(IUploadService.class);
+            upload.upload();
+        };
+    }
+}
+```
+> 结果
+```java
+minio upload
+```
+> 不指定上传方式启动
+```java
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
+public class SpringBootAutoConfigTest {
+    public static void main(String[] args) {
+        new SpringApplicationBuilder(SpringBootAutoConfigTest.class)
+                .properties("logging.config=classpath:conf/logback/logback.xml")
+                //.properties("upload.type=minio")
+                .run(args);
+    }
+    @Bean
+    public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
+        return args -> {
+            IUploadService upload = ctx.getBean(IUploadService.class);
+            upload.upload();
+        };
+    }
+}
+```
+> 结果
+```java
+sftp upload
+```
+
+
