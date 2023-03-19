@@ -18,7 +18,19 @@
     - [架构设计](README?id=架构设计)
     - [网络&安全](README?id=网络&安全)
     - [网络编程](README?id=网络编程)
-  
+- [干货专栏](ARTICLES.md)
+  - [Java](ARTICLES?id=Java)
+  - [大数据](ARTICLES?id=大数据)
+  - [Python](ARTICLES?id=Python)
+  - [AI](ARTICLES?id=AI)
+  - [MySQL](ARTICLES?id=MySQL)
+  - [Netty](ARTICLES?id=Netty)
+  - [设计模式](ARTICLES?id=设计模式)
+  - [技术调研&问题排查](ARTICLES?id=技术调研and问题排查)
+  - [工具](ARTICLES?id=工具)
+  - [程序人生](ARTICLES?id=程序人生)
+  - [面试题](ARTICLES?id=面试题)
+  - [LeetCode](ARTICLES?id=LeetCode)
 
 * [面试宝典](articles/_sidebar.md)
 
