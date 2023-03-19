@@ -1,3 +1,5 @@
+- [<span class="iconfont icon-book3"></span> 首页](home.md)
+
 * [<span class="iconfont icon-book3"></span> 开发工具](tools/_sidebar.md)
 
 * [java资料](README.md)
@@ -20,4 +22,4 @@
 
 * [面试宝典](articles/_sidebar.md)
 
-- [<span class="iconfont icon-github1"></span> GitHub](https://github.com/bytesfly/blog)
+- [<span class="iconfont icon-github1"></span> GitHub](https://github.com/xiaowj888)
