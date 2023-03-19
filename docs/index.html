@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>技术文档</title>
+    <title>JavaTodo</title>
+    <link rel="icon" href="https://cdn.jsdelivr.net/gh/wugenqiang/StaticRepo/images/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta name="description" content="Description">
     <meta name="viewport"
@@ -15,30 +16,202 @@
 
     <script src="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 
-    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>
+<!--    <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/gitalk.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.min.js"></script>-->
 
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.css">
 
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">
+<!--    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk/dist/gitalk.css">-->
+    <link rel="stylesheet" href="assets/css/vue.css">
+    <link rel="stylesheet" href="assets/css/sidebar.min.css"/>
+
+  <!--  &lt;!&ndash; alert &ndash;&gt;
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/sweetalert.min.css" type='text/css' media='all' />
+    &lt;!&ndash; 友链 &ndash;&gt;
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/css/friends-link.css">
+    &lt;!&ndash; 自定义特色样式：by myself &ndash;&gt;
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/css/me.css">-->
 
 
+
+    <!--    <link rel="stylesheet" href="assets/css/docsify-darklight-theme.min.css"/>-->
+
+    <style>
+
+    /*加重描述strong*/
+    .markdown-section strong {
+      color: rgb(239, 112, 96);
+    }
+
+    .app-nav{
+      position: fixed;
+      margin: 0;
+      /*padding: 10px 50px 10px 0;*/
+      padding: 10px 0 10px 0;/*上、右、下、左*/
+      width: calc(100% - 325px);
+      background-color: #fff;
+      height: 55px;
+      border-bottom: 1px solid #eee;
+    }
+
+    /*.github-corner{
+      position: absolute;
+      z-index: 999999;
+      top: 0;
+    }*/
+
+    .markdown-section code {
+      border-radius: 2px;
+      font-family: "Helvetica Neue",Helvetica,"Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;
+      font-size: 16px !important;
+      margin: 0 2px;
+      padding: 3px 5px;
+      white-space: nowrap;
+      /*border: 1px solid #282c34;*/
+      /*color: rgb(184, 101, 208);*/
+    }
+
+    .markdown-section > div > img, .markdown-section pre {
+      box-shadow: 2px 2px 20px 6px rgb(255, 255, 255) !important;
+    }
+
+    .markdown-section a:not(:hover) {
+      text-decoration: none;
+    }
+
+    /*侧边栏*/
+    .sidebar {
+      padding-top: 6px;
+    }
+
+    aside.sidebar ul li {
+      margin: 0;
+      position: relative;
+    }
+
+    aside.sidebar ul li ul {
+      margin: 6px 0;
+    }
+
+    aside.sidebar ul li p {
+      padding-left: 22px;
+      font-size: 18px;
+      font-weight: normal;
+    }
+
+    aside.sidebar ul li a {
+      line-height: 35px;
+      font-size: 14px;
+      padding: 3px 0 3px 22px;
+    }
+
+    aside.sidebar ul li.active > a {
+      font-size: 16px !important;
+    }
+
+    aside.sidebar ul li.active > a:before {
+      content: '' !important;
+      position: absolute !important;
+      margin: 0 !important;
+      width: 10px !important;
+      height: 10px !important;
+      top: 15px !important;
+      left: 0px !important;
+      border-radius: 50% !important;
+      background-color: #fed24a !important;
+      box-shadow: 0 0 0 3px rgba(254, 210, 74, 0.4) !important;
+    }
+
+    /*以上调侧边栏*/
+
+    /*h1 span{
+      display:inline-block;
+      background: rgb(66, 185, 131);
+      color:#ffffff;
+      padding:  10px  16px;
+      border-radius:5px;
+      box-shadow: 1px 1px 3px black;
+    }*/
+    #main h2 span{ color:#18b566 !important; }
+    #main h3 span{ color:#089acc !important; }
+    #main h4 span{ color:#FF9700 !important; }
+
+
+    .advertisement {
+      position: fixed;
+      right: 20px;
+      top: 200px;
+      width: 160px;
+      box-shadow: -1px 0 2px 0px #c5ebda;
+      padding: 10px;
+      z-index: 99;
+      background-color: #fff;
+      text-align: center;
+    }
+
+    .advertisement p,
+    h4 {
+      margin: 0;
+      padding: 0;
+    }
+
+    .advertisement .Tencent_code h4 {
+      font-size: 15px;
+      color: #25a46a;
+      margin-bottom: 10px;
+    }
+
+    /*滚动条样式 start*/
+    /* 滚动条宽度 */
+    /*::-webkit-scrollbar{width:5px;}*/
+    /* 滚动条颜色 */
+    /*::-webkit-scrollbar-thumb{*/
+    /*  background: #33a9dc;*/
+    /*  background-image: linear-gradient(#6ecd56, #33a9dc, #cb6196, #c16290);*/
+    /*  border-radius: 2em;*/
+    /*}*/
+  </style>
 
 </head>
 <body>
+
+<div class="aside_container">
+    <div class="advertisement">
+        <div class="Tencent_code">
+            <h4>微信公众号</h4>
+            <img src="images/侧边栏微信号.jpg" alt="java" />
+        </div>
+    </div>
+</div>
+
+
+
 <div id="app"></div>
 <script>
     var num = 0;
     mermaid.initialize({ startOnLoad: false });
     window.$docsify = {
         coverpage: true,
-        name: '技术文档',
-        loadSidebar: true,
-        loadNavbar: true,
-        auto2top: true,
-        subMaxLevel: 5,
+        name: 'JavaTodo',
+        themeColor: '#007be8', // 主题颜色
+
+          //loadSidebar: true,//_sidebar.md如果为真，则从_sidebar.md文件加载边栏，否则从指定的路径加载
+          auto2top: true,  //当路线改变时,滚动到屏幕的顶部
+          loadNavbar: true,//_navbar.md如果为真，则从_navbar.md文件加载navbar ，否则从指定的路径加载
+          mergeNavbar: true,//Navbar将在小屏幕上与侧边栏合并
+          executeScript: true,//执行页面上的脚本。只解析第一个脚本标记（演示）。如果存在Vue，则默认开
+          maxLevel: 3,//最大的内容表级别
+          //subMaxLevel: 3,//在自定义边栏中添加目录（TOC)
+          externalLinkTarget: '_blank', //外链打开方式：_blank表示在新标签页中打开
+          coverpage: true,
+          onlyCover: true,
+          topMargin: 60,//调整top
+
+
         autoHeader: true,
+        logo: 'images/logo.png',
         repo: 'https://gitee.com/easy16/ebatch.git',
+
         markdown: {
             renderer: {
                 code: function(code, lang) {
@@ -50,28 +223,89 @@
                     return this.origin.code.apply(this, arguments);
                 }
             }
-        }
+        },
+
+        footer: {
+        copy: '打造Java开发一站式套件。 —— <a href="http://1.13.182.252:8090/" target="_blank">架构狂人</a><br/><br/>',
+        pre: '<hr/>',
+        style: 'text-align: left;',
+      },//添加页脚
+
+
+       /* // 底部导航
+        pagination: {
+          previousText: "上一页",
+          nextText: "下一页",
+          crossChapter: true,
+          crossChapterText: true,
+        },*/
+        // 字数统计
+        count: {
+          countable: true,
+          position: "top",
+          margin: "10px",
+          float: "right",
+          fontsize: "0.9em",
+          color: "red",
+          language: "chinese",
+          localization: {
+            words: "",
+            minute: "",
+          },
+          isExpected: true,
+        },
     }
-
-
-      const gitalk = new Gitalk({
-      clientID: 'Github Application Client ID',
-      clientSecret: 'Github Application Client Secret',
-      repo: 'Github repo',
-      owner: 'Github repo owner',
-      admin: ['Github repo collaborators, only these guys can initialize github issues'],
-      // facebook-like distraction free mode
-      distractionFreeMode: false,
-      id: decodeURI(window.location.pathname),
-    })
 
 </script>
 <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+<!--<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/disqus.min.js"></script>-->
+
+<!-- 复制代码-->
+<script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
 <script src="//unpkg.com/prismjs/components/prism-java.min.js"></script>
+
+
+
+<script src="assets/js/vanilla-back-to-top.min.js"></script>
+<script src="assets/js/docsify-darklight-theme.js"></script>
+<script src="assets/js/docsify-sidebar-collapse.min.js"></script>
+
+
+<!-- 图片放大缩小 -->
+<script src="https://cdn.jsdelivr.net/npm/docsify@4/lib/plugins/zoom-image.min.js"></script>
+
+<!-- 字数统计 -->
+<script src="https://cdn.jsdelivr.net/npm/docsify-count@latest/dist/countable.min.js"></script>
+
+<!-- 页面右侧 TOC -->
+<script src="https://cdn.jsdelivr.net/npm/docsify-plugin-toc@1.1.0/dist/docsify-plugin-toc.min.js"></script>
+
+<!-- emoji -->
+<script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/emoji.min.js"></script>
+
+
+<!-- 底部 上一页下一页 -->
+<!--<script src="https://cdn.jsdelivr.net/npm/docsify-pagination@2/dist/docsify-pagination.min.js"></script>-->
+
+
+
+
+<!-- 回到顶部功能 -->
+<script>
+    addBackToTop({
+        diameter: 56,
+        backgroundColor: 'rgb(66, 185, 131)',
+        textColor: '#fff',
+    });
+</script>
+
+<!-- 添加页脚 -->
+<script src="https://cdn.jsdelivr.net/gh/wugenqiang/NoteBook@master/plugin/docsify-footer-enh.min.js"></script>
 
 </body>
 </html>
