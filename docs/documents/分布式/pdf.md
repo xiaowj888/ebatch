@@ -1,11 +1,6 @@
 ## [java资料](README.md)
 
-#### [Java核心技术·卷I（原书第12版） : 开发基础](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作](https://book.douban.com/subject/35920145/)
-#### [Java语言程序设计（基础篇 原书第10版） : Java语言程序设计](https://book.douban.com/subject/35920145/)
-#### [Java编程思想 （第4版）](https://book.douban.com/subject/35920145/)
-#### [图解Java多线程设计模式](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作Java 8实战](https://book.douban.com/subject/35920145/)
+#### [从Paxos到Zookeeper_分布式一致性原理与实践（书签版）.pdf](https://pan.baidu.com/s/15VuV9JKWEvzzywkByww9hQ?pwd=72sw)
 
 
 

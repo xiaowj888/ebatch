@@ -1,9 +1,9 @@
-#### [Java核心技术·卷I（原书第12版） : 开发基础](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作](https://book.douban.com/subject/35920145/)
-#### [Java语言程序设计（基础篇 原书第10版） : Java语言程序设计](https://book.douban.com/subject/35920145/)
-#### [Java编程思想 （第4版）](https://book.douban.com/subject/35920145/)
-#### [图解Java多线程设计模式](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作Java 8实战](https://book.douban.com/subject/35920145/)
+## [java资料](README.md)
+
+#### [《大型网站性能优化实战从前端网络CDN到后端大促的全链路性能优化》_周涛明_2019-01-01.pdf](https://pan.baidu.com/s/1uvH4CzBBeD5nQ3SSPszjag?pwd=31d8)
+#### [构建高性能WEB站点.pdf](https://pan.baidu.com/s/1Pjw87kmu-_kls3Wo0uvgDw?pwd=guwc)
+#### [微服务架构与实践(王磊著)完整版.pdf](https://pan.baidu.com/s/1aGCZmLUDZVB0vc8dcupZHg?pwd=exht)
+#### [大型网站系统与JAVA中间件实践（高清版）.pdf](https://pan.baidu.com/s/1pAQYe815Mwc0hHg2f1EyOQ?pwd=id8d)
 
 
 

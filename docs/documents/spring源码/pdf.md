@@ -1,9 +1,10 @@
-#### [Java核心技术·卷I（原书第12版） : 开发基础](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作](https://book.douban.com/subject/35920145/)
-#### [Java语言程序设计（基础篇 原书第10版） : Java语言程序设计](https://book.douban.com/subject/35920145/)
-#### [Java编程思想 （第4版）](https://book.douban.com/subject/35920145/)
-#### [图解Java多线程设计模式](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作Java 8实战](https://book.douban.com/subject/35920145/)
+## [java资料](README.md)
+
+#### [《互联网轻量级SSM框架解密：Spring、Spring MVC、MyBatis源码深度剖析.pdf](https://pan.baidu.com/s/1Zo0NBqMfTwxsVR0E_g086g?pwd=k39z)
+#### [《Spring源码深度解析（第2版）》_郝佳_2019-01-01.pdf](https://pan.baidu.com/s/1-WpS934UEhb9yXk6G8FqhQ?pwd=1gdi)
+#### [SPRING技术内幕：深入解析SPRING架构与设计原理.pdf](https://pan.baidu.com/s/1azEhOdHp-3qZnIseU8-lGw?pwd=nkn2)
+#### [spring揭秘(完整).pdf](https://pan.baidu.com/s/1k_rNaYv4OJVu9Zr9r5RQmA?pwd=i94p)
+#### [Spring源码深度解析.pdf](https://pan.baidu.com/s/105BQIRgOFNCnya6DpVg6nQ?pwd=wd6p)
 
 
 

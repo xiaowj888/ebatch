@@ -1,9 +1,9 @@
-#### [Java核心技术·卷I（原书第12版） : 开发基础](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作](https://book.douban.com/subject/35920145/)
-#### [Java语言程序设计（基础篇 原书第10版） : Java语言程序设计](https://book.douban.com/subject/35920145/)
-#### [Java编程思想 （第4版）](https://book.douban.com/subject/35920145/)
-#### [图解Java多线程设计模式](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作Java 8实战](https://book.douban.com/subject/35920145/)
+## [java资料](README.md)
+
+#### [《MongoDB运维实战》_张甦等_2018-09-01.pdf](https://pan.baidu.com/s/1wkjCF0LVfX96RLoIbf4Fig?pwd=2g93)
+#### [MongoDB权威指南第2版.pdf](https://pan.baidu.com/s/1Bi2N2LnO7KBz_y8m2Bn_ng?pwd=xf93)
+#### [MongoDB实战.pdf](null)
+#### [深入学习MongoDb.pdf](https://pan.baidu.com/s/1Cop8gWUvamfzdgz79Z0rag?pwd=k55g)
 
 
 

@@ -1,9 +1,10 @@
-#### [Java核心技术·卷I（原书第12版） : 开发基础](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作](https://book.douban.com/subject/35920145/)
-#### [Java语言程序设计（基础篇 原书第10版） : Java语言程序设计](https://book.douban.com/subject/35920145/)
-#### [Java编程思想 （第4版）](https://book.douban.com/subject/35920145/)
-#### [图解Java多线程设计模式](https://book.douban.com/subject/35920145/)
-#### [On Java 中文版 基础卷 : 《Java编程思想》作者新作Java 8实战](https://book.douban.com/subject/35920145/)
+## [java资料](README.md)
+
+
+#### [《Web开发权威指南》.pdf](https://pan.baidu.com/s/1di4YpqCZpUiYzEMLz_aBZg?pwd=ehiq)
+#### [《轻量级Web应用开发》.pdf](https://pan.baidu.com/s/1z0vZEtpmnjBDucJXH10aww?pwd=jv9i)
+#### [Java EE互联网轻量级框架整合开发 SSM框架（Spring MVC+Spring+MyBatis）和Redis实现.pdf](https://pan.baidu.com/s/1bjNaCjnxqL1uzFWxUc3Gmg?pwd=h3ih)
+#### [Java Web企业项目实战.pdf](https://pan.baidu.com/s/17Ok9L8i2w989KOFaA4VMqw?pwd=tj9z)
 
 
 
